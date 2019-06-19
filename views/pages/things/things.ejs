@@ -1,0 +1,28 @@
+<style>
+  .rawr {
+    background-color: red;
+  }
+</style>
+<div id="things" class="rawr" v-cloak>
+
+  <h1>TODO: Implement this page.</h1>
+  <p>(See also <em>assets/styles/pages/things/things.less</em>, <em>assets/js/pages/things/things.page.js</em>, and <em>api/controllers/things/view-things.js</em>.)</p>
+
+  <% if (!things.length) { %>
+    <h3>There are no things in the database</h3>
+  <% } else { %>
+    <ul>
+      <% for (const thing of things) { %>
+        <li><%= thing.label %></li>
+      <% } %>
+    </ul>
+  <% } %>
+
+  <form action="/create-thing" method="post">
+    <input type="hidden" name="_csrf" value="<%= _csrf %>">
+    <label>Name</label>
+    <input type="text" name="label">
+    <button type="submit">Create Thing</button>
+  </form>
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
